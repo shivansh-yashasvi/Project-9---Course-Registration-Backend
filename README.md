@@ -1,7 +1,30 @@
 # Submission for Dyte - Backend Task
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary><h1>Table of Contents</h1></summary>
+  <ol>
+    <li>
+      <a href="#the-backend-for-vit-course-registration-with-the-following-functionality"> Project Functionality </a>
+    </li>
+    <li>
+      <a href="#the-project-implements-the-following-features">Project Features</a>
+    </li>
+    <li><a href="#steps-to-run">Steps to Run</a></li>
+    <li>
+      <a href="#database-schema">Database Schema</a>
+    </li>
+    <li><a href="#api-specifications">API Specifications</a>
+      <ul>
+        <li><a href="#admin-routes">Admin Routes</a>
+         <li><a href="#student-routes">Student Routes</a>
+      </ul>
+    </li>
+  </ol>
+</details>
 
-## The Backend for VIT Course Registration with the following functionality - 
+
+## The Backend for VIT Course Registration with the following functionality 
 
 1. There are specific slots spread across the week. The timings and IDs of these slots
 can be configured by the administrator.
@@ -57,6 +80,12 @@ replace username, password, host, port to your choice
 go run main.go
 ```
 <br> <br>
+
+## Database Schema
+
+<img src= "https://github.com/shivansh-yashasvi/dyte-backend/blob/main/DB%20Schema.png"> 
+
+<br><br>
 ## API Specifications 
 
 ### Admin Routes

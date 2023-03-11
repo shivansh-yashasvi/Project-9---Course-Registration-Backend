@@ -33,12 +33,35 @@ can access their routes.
 4. A student is able to see their registered courses and status via an API route.
 Naturally, no other students should be able to see this information.
 
+<br><br>
+## Steps to run 
 
+1. Set the database connection in DBConnection file <br>
+
+```
+import the vitdb.sql  in MySqlWorkBench 
+```
+
+<br>
+
+In the DBConnection folder -> DBConnect.go file -> <br>
+
+```
+db, err := sql.Open("mysql", "username:password@tcp(host:port)/vit?parseTime=true")
+```
+
+replace username, password, host, port to your choice
+
+2. Run the Project<br>
+```
+go run main.go
+```
+<br> <br>
 ## API Specifications 
 
 ### Admin Routes
 
-1. Create a faculty <br>
+1. Create a faculty. [POST] <br>
 
 Request : <br>
 
@@ -61,7 +84,7 @@ Response:  <br>
 }
 ```
 <br>
-2. Create a course <br>
+2. Create a course [POST]<br>
 
 Request: <br>
 ```
@@ -107,7 +130,7 @@ Response: <br>
 }
 ```
 <br>
-3. Create a slot <br>
+3. Create a slot [POST]<br>
 
 Request: <br>
 ```
@@ -140,7 +163,7 @@ Response: <br>
 }
 ```
 <br>
-4. Create a Student <br>
+4. Create a Student [POST]<br>
 
 Request: <br>
 ```
@@ -169,9 +192,9 @@ Response: <br>
 ### Student Routes
 
 <br>
-1. Get Faculty by ID <br>
+1. Get Faculty by ID [GET]<br>
 
-Request:
+Request:<br>
 
 ```
 {
@@ -179,7 +202,7 @@ Request:
 }
 ```
 
-Response:
+Response:<br>
 
 ```
 {
@@ -187,6 +210,157 @@ Response:
   "data": {
     "id": "string",
     "name": "string"
+  }
+}
+```
+
+<br>
+2. Get course by ID [GET]<br>
+
+Request: <br>
+
+```
+{
+  "course_id" : "string"
+}
+```
+
+Response:<br>
+
+```
+{
+  "id": "string",
+  "name": "string",
+  "slot_ids": [
+    "string"
+  ],
+  "faculty_ids": [
+    "string"
+  ],
+  "course_type": "THEORY"
+}
+```
+
+<br>
+3. Register for a course [POST]<br>
+
+Request: <br>
+  
+```
+{
+  "course_id": "string",
+  "faculty_id": "string",
+  "slot_ids": [
+    "string"
+  ]
+}
+```
+
+Response: <br>
+```
+{
+  "success": true,
+  "data": {
+    "id": "string",
+    "name": "string",
+    "registered_courses": [
+      {
+        "course": {
+          "id": "string",
+          "name": "string",
+          "faculties": [
+            {
+              "id": "string",
+              "name": "string"
+            }
+          ],
+          "course_type": "THEORY",
+          "allowed_slots": [
+            {
+              "id": "A1",
+              "timings": [
+                {
+                  "day": "MON",
+                  "start": "2019-08-24T14:15:22Z",
+                  "end": "2019-08-24T14:15:22Z"
+                }
+              ]
+            }
+          ]
+        },
+        "slots": [
+          {
+            "id": "A1",
+            "timings": [
+              {
+                "day": "MON",
+                "start": "2019-08-24T14:15:22Z",
+                "end": "2019-08-24T14:15:22Z"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+<br>
+4. Get timetable [POST]<br>
+
+Request: <br>
+
+```
+Token: AuthID
+```
+
+Response: <br>
+
+```
+{
+  "success": true,
+  "data": {
+    "id": "string",
+    "name": "string",
+    "registered_courses": [
+      {
+        "course": {
+          "id": "string",
+          "name": "string",
+          "faculties": [
+            {
+              "id": "string",
+              "name": "string"
+            }
+          ],
+          "course_type": "THEORY",
+          "allowed_slots": [
+            {
+              "id": "A1",
+              "timings": [
+                {
+                  "day": "MON",
+                  "start": "2019-08-24T14:15:22Z",
+                  "end": "2019-08-24T14:15:22Z"
+                }
+              ]
+            }
+          ]
+        },
+        "slots": [
+          {
+            "id": "A1",
+            "timings": [
+              {
+                "day": "MON",
+                "start": "2019-08-24T14:15:22Z",
+                "end": "2019-08-24T14:15:22Z"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }
 ```
